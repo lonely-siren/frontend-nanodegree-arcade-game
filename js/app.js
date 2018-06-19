@@ -31,7 +31,7 @@ Enemy.prototype.render = function() {
 // Player classs
 var Player = function() {
   // Set player image
-  this.sprite = 'images/char-boy.png';
+  this.sprite = 'images/char-pink-girl.png';
   // Set initial player position
   this.x = 200;
   this.y = 400;
