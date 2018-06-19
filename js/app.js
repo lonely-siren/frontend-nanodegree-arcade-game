@@ -8,7 +8,7 @@ var Enemy = function() {
     this.yPositionValues = [41.5, 124.5, 207.5];
     this.y = this.yPositionValues[Math.floor(Math.random() * this.yPositionValues.length)];
     //Setting the Enemy speed
-    this.veloc = Math.floor((Math.random() * 30) + 10);
+    this.speed = Math.floor((Math.random() * 30) + 10);
 };
 
 // Update the enemy's position, required method for game
@@ -17,6 +17,25 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+     this.x = this.x + (this.speed * dt);
+
+     //end of screen on the right
+     if (this.x > 504) {
+       this.x = -90;
+       this.y = this.yPositionValues[Math.floor(Math.random() * this.yPositionValues.length)];
+       this.speed  = Math.floor((Math.random() * 30) + 10);
+     }
+
+     //Handles collision with the Player
+     if ((this.x > player.x - 75 && this.x < player.x + 75) && (this.y > player.y - 75 && this.y < player.y + 75)) {
+       // Return player to initial position
+          player.x = 202;
+          player.y = 373.5;
+          // Enemies go to random positions
+          allEnemies.forEach(function(enemy) {
+            enemy.x = Math.floor((Math.random() * 504) + -90);
+            enemy.y = enemy.yPositionValues[Math.floor(Math.random() * enemy.yPositionValues.length)];
+ });
 };
 
 // Draw the enemy on the screen, required method for game
