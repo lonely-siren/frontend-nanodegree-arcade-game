@@ -4,38 +4,23 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     //Setting the Enemy initial location
-    this.x = Math.floor((Math.random() * 504) + -90);
-    this.yPositionValues = [41.5, 124.5, 207.5];
-    this.y = this.yPositionValues[Math.floor(Math.random() * this.yPositionValues.length)];
+    this.x = 0;
+    this.y = 50;
     //Setting the Enemy speed
-    this.speed = Math.floor((Math.random() * 30) + 10);
+    this.speed = Math.floor(Math.random() * 250 + 50);
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function(dt, x, y) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-     this.x = this.x + (this.speed * dt);
-
-     //end of screen on the right
-     if (this.x > 504) {
-       this.x = -90;
-       this.y = this.yPositionValues[Math.floor(Math.random() * this.yPositionValues.length)];
-       this.speed  = Math.floor((Math.random() * 30) + 10);
-     }
-
-     //Handles collision with the Player
-     if ((this.x > player.x - 75 && this.x < player.x + 75) && (this.y > player.y - 75 && this.y < player.y + 75)) {
-       // Return player to initial position
-          player.x = 202;
-          player.y = 373.5;
-          // Enemies go to random positions
-          allEnemies.forEach(function(enemy) {
-            enemy.x = Math.floor((Math.random() * 504) + -90);
-            enemy.y = enemy.yPositionValues[Math.floor(Math.random() * enemy.yPositionValues.length)];
- });
+    this.x = this.x + (dt * this.speed);
+    if ( this.x > 500 ){
+      this.x = 0;
+      this.speed = Math.floor(Math.random() * 200 + 100);
+    };
 };
 
 // Draw the enemy on the screen, required method for game
@@ -45,26 +30,62 @@ Enemy.prototype.render = function() {
 
 // Player classs
 var Player = function() {
-  // Set initial player position
-  this.x = 202;
-  this.y = 373.5;
   // Set player image
   this.sprite = 'images/char-boy.png';
+  // Set initial player position
+  this.x = 200;
+  this.y = 400;
+};
+
+Player.prototype.update = function() {
+
 };
 
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+Player.prototype.handleInput = function(dir){
+	if ( dir == 'left' ){
+		this.x = this.x - 100;
+		if ( this.x < 0 ){
+			this.x = 0;
+		};
+	};
+	if ( dir == 'right' ){
+		this.x = this.x + 100;
+		if ( this.x > 400 ){
+			this.x = 400;
+		};
+	};
+	if ( dir == 'up' ){
+		this.y = this.y - 90;
+		if ( this.y < 0 ){
+			//reach to water so we reset the position to initials.
+			this.y = 400;
+			this.x = 200;
+      this.score++;
+      console.log(this.score);
+		};
+	};
+	if ( dir == 'down' ){
+		this.y = this.y + 90;
+		if ( this.y > 400 ){
+			this.y = 400;
+		};
+	};
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
+var allEnemies = [];
+for ( var i=0; i < 4; i++ ){
+	allEnemies.push(new Enemy());
+	allEnemies[i].y = i * 90 + 50;
+};
 
 // Place the player object in a variable called player
 var player = new Player();
-
-
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -75,6 +96,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
