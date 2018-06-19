@@ -1,6 +1,25 @@
-frontend-nanodegree-arcade-game
-===============================
+# FrontEnd nanodegree arcade game
+Arcade game / skill game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
+* [Objective](#objective)
+* [Instructions](#instructions)
+* [Contributing](#contributing)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Objective
+The object of the game is to direct a girl to the water by crossing a road full of hazards.
+
+## Instructions
+1- Use the arrows to move on the screen
+
+2- Avoid the enemies
+
+3- Make it to the water without being hit by a roach
+
+## Contributing
+
+This repository is the starter code for _all_ Udacity students.
+Starter project https://github.com/udacity/frontend-nanodegree-arcade-game
+
+## Dependencies
+* None
