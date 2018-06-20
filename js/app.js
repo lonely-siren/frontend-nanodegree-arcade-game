@@ -1,3 +1,5 @@
+
+var level = 1;
 // Enemies our player must avoid
 var Enemy = function() {
     // Load enemy's image
@@ -7,7 +9,7 @@ var Enemy = function() {
     this.x = 0;
     this.y = 50;
     //Setting the Enemy speed
-    this.speed = Math.floor(Math.random() * 250 + 50);
+    this.speed = Math.floor(Math.random() * 250 + 50) * (level * 0.2);
 };
 
 // Update the enemy's position, required method for game
@@ -19,8 +21,17 @@ Enemy.prototype.update = function(dt, x, y) {
     this.x = this.x + (dt * this.speed);
     if ( this.x > 500 ){
       this.x = 0;
-      this.speed = Math.floor(Math.random() * 200 + 100);
+      this.speed = Math.floor(Math.random() * 200 + 100) * (level * 0.2);
     };
+
+    // Check for collision between player and enemies
+       if (player.x < this.x + 60 &&
+           player.x + 40 > this.x &&
+           player.y < this.y + 25 &&
+           30 + player.y > this.y) {
+           player.x = 200;
+           player.y = 400;
+         };
 };
 
 // Draw the enemy on the screen, required method for game
@@ -45,6 +56,12 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+
+Player.prototype.render2 = function(){
+
+};
+
+
 Player.prototype.handleInput = function(dir){
 	if ( dir == 'left' ){
 		this.x = this.x - 100;
@@ -64,8 +81,9 @@ Player.prototype.handleInput = function(dir){
 			//reach to water so we reset the position to initials.
 			this.y = 400;
 			this.x = 200;
-      this.score++;
-      console.log(this.score);
+      window.level++;
+      console.log(this.level);
+      alert("congrats! Play level " + level)
 		};
 	};
 	if ( dir == 'down' ){
