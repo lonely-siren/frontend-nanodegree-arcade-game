@@ -4,7 +4,6 @@ var level = 1;
 var Enemy = function() {
     // Load enemy's image
     this.sprite = 'images/enemy-bug.png';
-
     //Setting the Enemy initial location
     this.x = 0;
     this.y = 50;
@@ -38,7 +37,6 @@ Enemy.prototype.update = function(dt, x, y) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
 // Player classs
 var Player = function() {
   // Set player image
@@ -46,10 +44,8 @@ var Player = function() {
   // Set initial player position
   this.x = 200;
   this.y = 400;
-};
-
+  };
 Player.prototype.update = function() {
-
 };
 
 Player.prototype.render = function() {
