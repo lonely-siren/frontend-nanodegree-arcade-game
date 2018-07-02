@@ -25,7 +25,7 @@ Enemy.prototype.update = function(dt, x, y) {
 
     // Check for collision between player and enemies
        if (player.x < this.x + 60 &&
-           player.x + 40 > this.x &&
+           player.x + 35 > this.x &&
            player.y < this.y + 25 &&
            30 + player.y > this.y) {
            player.x = 200;
@@ -51,12 +51,6 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-
-Player.prototype.render2 = function(){
-
-};
-
 
 Player.prototype.handleInput = function(dir){
 	if ( dir == 'left' ){

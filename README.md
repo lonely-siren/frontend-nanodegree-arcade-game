@@ -4,6 +4,7 @@ Arcade game / skill game
 ## Table of Contents
 * [Objective](#objective)
 * [Instructions](#instructions)
+* [How to run](#howtorun)
 * [Contributing](#contributing)
 
 ## Objective
@@ -15,6 +16,9 @@ The object of the game is to direct a girl to the water by crossing a road full 
 2- Avoid the enemies
 
 3- Make it to the water without being hit by a roach
+
+## howtorun
+Open index.html on a browser
 
 ## Contributing
 
